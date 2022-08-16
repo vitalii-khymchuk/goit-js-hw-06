@@ -2,8 +2,8 @@ class Counter {
   constructor(rootSelector, initialValue) {
     this.currentValue = initialValue;
     this.refs = this.getRefs(rootSelector);
-    this.bindEvents();
     this.updateValue();
+    this.bindEvents();
   }
 
   getRefs(rootSelector) {
@@ -21,21 +21,42 @@ class Counter {
 
   bindEvents() {
     this.refs.incrementBtn.addEventListener("click", () =>
-      this.increaseValue()
+      this.incrementBtnClickHandler()
     );
     this.refs.decrementBtn.addEventListener("click", () =>
-      this.decreaseValue()
+      this.decrementBtnClickHandler()
     );
+  }
+
+  // Чому не працює ось так, при передачі в аргумент напряму посилання на increaseValue(), decreaseValue() ???
+
+  // bindEvents() {
+  //   this.refs.incrementBtn.addEventListener(
+  //     "click",
+  //     this.incrementBtnClickHandler
+  //   );
+  //   this.refs.decrementBtn.addEventListener(
+  //     "click",
+  //     this.decrementBtnClickHandler
+  //   );
+  // }
+
+  incrementBtnClickHandler() {
+    this.increaseValue();
+    this.updateValue();
+  }
+
+  decrementBtnClickHandler() {
+    this.decreaseValue();
+    this.updateValue();
   }
 
   increaseValue() {
     this.currentValue += 1;
-    this.updateValue();
   }
 
   decreaseValue() {
     this.currentValue -= 1;
-    this.updateValue();
   }
 
   updateValue() {
