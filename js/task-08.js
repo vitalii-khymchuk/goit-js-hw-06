@@ -7,15 +7,25 @@ const saveInputData = (email, password) => {
   console.log(inputData);
 };
 
+const clearInput = (event) => {
+  event.currentTarget.elements.email.value = "";
+  event.currentTarget.elements.password.value = "";
+};
+
 const onLoginFormSubmit = (event) => {
   event.preventDefault();
-  const formEmail = event.currentTarget.elements.email.value;
-  const formPassword = event.currentTarget.elements.password.value;
-  const isFormFilledCorrect = !(formEmail === "") && !(formPassword === "");
+  const formEmailValue = event.currentTarget.elements.email.value;
+  const formPasswordValue = event.currentTarget.elements.password.value;
 
-  isFormFilledCorrect
-    ? saveInputData(formEmail, formPassword)
-    : alert("Всі поля повинні бути заповнені не халтурь))");
+  const isFormFilledCorrect =
+    !(formEmailValue === "") && !(formPasswordValue === "");
+
+  if (isFormFilledCorrect) {
+    saveInputData(formEmailValue, formPasswordValue);
+    clearInput(event);
+  } else {
+    alert("Всі поля повинні бути заповнені не халтурь))");
+  }
 };
 
 loginFormRef.addEventListener("submit", onLoginFormSubmit);
