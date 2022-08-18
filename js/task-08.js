@@ -8,14 +8,13 @@ const saveInputData = (email, password) => {
 };
 
 const clearInput = (event) => {
-  event.currentTarget.elements.email.value = "";
-  event.currentTarget.elements.password.value = "";
+  loginFormRef.reset();
 };
 
 const onLoginFormSubmit = (event) => {
   event.preventDefault();
-  const formEmailValue = event.currentTarget.elements.email.value;
-  const formPasswordValue = event.currentTarget.elements.password.value;
+  const formEmailValue = event.currentTarget.elements.email.value.trim();
+  const formPasswordValue = event.currentTarget.elements.password.value.trim();
 
   const isFormFilledCorrect =
     !(formEmailValue === "") && !(formPasswordValue === "");
