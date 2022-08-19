@@ -20,26 +20,15 @@ class Counter {
   }
 
   bindEvents() {
-    this.refs.incrementBtn.addEventListener("click", () =>
-      this.incrementBtnClickHandler()
+    this.refs.incrementBtn.addEventListener(
+      "click",
+      this.incrementBtnClickHandler.bind(this)
     );
-    this.refs.decrementBtn.addEventListener("click", () =>
-      this.decrementBtnClickHandler()
+    this.refs.decrementBtn.addEventListener(
+      "click",
+      this.decrementBtnClickHandler.bind(this)
     );
   }
-
-  // Чому не працює ось так, при передачі в аргумент напряму посилання на increaseValue(), decreaseValue() ???
-
-  // bindEvents() {
-  //   this.refs.incrementBtn.addEventListener(
-  //     "click",
-  //     this.incrementBtnClickHandler
-  //   );
-  //   this.refs.decrementBtn.addEventListener(
-  //     "click",
-  //     this.decrementBtnClickHandler
-  //   );
-  // }
 
   incrementBtnClickHandler() {
     this.increaseValue();
